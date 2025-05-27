@@ -27,6 +27,7 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")
     compileOnly("org.projectlombok:lombok")
     implementation("org.springframework.boot:spring-boot-starter-oauth2-resource-server")
+    implementation("org.springframework.boot:spring-boot-starter-oauth2-client")
     annotationProcessor("org.projectlombok:lombok")
     implementation("com.turkraft.springfilter:jpa:3.1.7")
     implementation("org.thymeleaf.extras:thymeleaf-extras-springsecurity6")

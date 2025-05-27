@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import com.example.demo.service.EmailService;
 import com.example.demo.service.SubscribersService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,11 +20,8 @@ public class EmailController {
 
     @GetMapping("/email")
 //    @Scheduled(cron = "0 */1 * * * *")
-    public String sendSimppleEmail(){
-//        this.emailService.sendSimpleEmail();
-//        this.emailService.sendEmailSync("votranquocbao2806@gmail.com","Hello bao","<h1> <b>Hello </b></h1>",false,true);
-//        this.emailService.sendEmailFromTemplateSync("votranquocbao2806@gmail.com","Hello bao","job");
+    public ResponseEntity<String> sendSimppleEmail(){
         this.subscribersService.sendSubscribersEmailJobs();
-        return "oke";
+        return ResponseEntity.ok().body("Email sent successfully");
     }
 }

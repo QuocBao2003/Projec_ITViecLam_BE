@@ -42,8 +42,8 @@ public class SecurityConfiguration {
         @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http, CustomAuthenticationEntryPoint customAuthenticationEntryPoint) throws Exception {
         String[] whileList = {"/","/api/v1/auth/login","/api/v1/auth/refresh","/storage/**","/api/v1/auth/register","/v3/api-docs/**","/swagger-ui/**",
-                "/swagger-ui.html"
-               ,"/api/v1/email/**","/api/v1/files","/api/v1/ask"};
+                "/api/v1/auth/google", "/api/v1/auth/oauth2/callback/**", "/api/v1/auth/google/token",
+                "/api/v1/email/**","/api/v1/files","/api/v1/ask"};
         http
                 .csrf(c->c.disable())
                 .cors(Customizer.withDefaults())
@@ -54,10 +54,10 @@ public class SecurityConfiguration {
                         .requestMatchers(HttpMethod.GET,"/api/v1/jobs/**").permitAll()
                         .requestMatchers(HttpMethod.GET,"/api/v1/skills/**").permitAll()
                         .anyRequest().authenticated()
-        )
+                )
+
                 .oauth2ResourceServer((oauth2)->oauth2.jwt(Customizer.withDefaults())
                         .authenticationEntryPoint(customAuthenticationEntryPoint))
-
                 .formLogin(f ->f.disable())
 
 //                .exceptionHandling(
@@ -102,4 +102,3 @@ public class SecurityConfiguration {
         return jwtAuthenticationConverter;
     }
     }
-

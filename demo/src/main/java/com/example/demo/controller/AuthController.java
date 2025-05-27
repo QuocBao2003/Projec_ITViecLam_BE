@@ -27,15 +27,26 @@ import org.springframework.web.bind.annotation.*;
 public class AuthController {
     private final SecurityUtil securityUtil;
     private final AuthenticationManagerBuilder authenticationManagerBuilder;
-    private final UserService  userService;
+    private final UserService userService;
     private final PasswordEncoder passwordEncoder;
+
+
+
     @Value("${demo.jwt.refresh-token-validity-in-seconds}")
     private long refreshTokenExpiration;
-    public AuthController(SecurityUtil securityUtil, AuthenticationManagerBuilder authenticationManagerBuilder, UserService userService, PasswordEncoder passwordEncoder) {
+
+    public AuthController(SecurityUtil securityUtil, 
+                         AuthenticationManagerBuilder authenticationManagerBuilder, 
+                         UserService userService, 
+                         PasswordEncoder passwordEncoder
+
+                       ) {
         this.securityUtil = securityUtil;
         this.authenticationManagerBuilder = authenticationManagerBuilder;
         this.userService = userService;
         this.passwordEncoder = passwordEncoder;
+
+
     }
 
     @PostMapping("/auth/login")
